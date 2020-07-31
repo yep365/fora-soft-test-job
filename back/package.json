@@ -1,0 +1,13 @@
+{
+  "name": "socket-chat-back",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/yep365/fora-soft-test-job",
+  "author": "yep365",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
