@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button } from "antd";
+import { Button, Input } from "antd";
 
 import { userActions } from "../../redux/actions";
 
@@ -22,7 +22,7 @@ const SignIn = () => {
     <div className="chat-sigin">
       <h1>Введите Ваше имя</h1>
       <div className="chat-sigin__bottom">
-        <input type="text" value={nameInput} onChange={(e) => setName(e)} />
+        <Input type="text" value={nameInput} onChange={(e) => setName(e)} />
         <Button onClick={sendName}>Продолжить</Button>
       </div>
     </div>

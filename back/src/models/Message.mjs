@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const MessageSchema = new mongoose.Schema(
   {
-    text: { type: String, require: true },
-    // room: { type: mongoose.Schema.Types.ObjectId, ref: "Room", require: true },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", require: true },
+    text: { type: String, required: true },
+    room: { type: mongoose.Schema.Types.ObjectId, ref: "Room", required: true },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   },
   {
     timestamps: true,

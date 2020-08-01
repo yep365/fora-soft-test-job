@@ -22,6 +22,7 @@ export default class RoomController {
   getRoomInfo = (req, res) => {
     try {
       const room = req.params.room;
+
       RoomModel.findOne({ room: room })
         .populate(["users", "messages"])
         .exec((err, room) => {
@@ -46,7 +47,6 @@ export default class RoomController {
   createRoom = (req, res) => {
     try {
       const userName = req.body.user;
-      const message = req.body.message;
 
       UserModel.findOne({ name: userName }, (err, user) => {
         if (err) {
@@ -58,38 +58,32 @@ export default class RoomController {
         if (user === null) {
           const newUser = new UserModel({ name: userName });
 
-          newUser.save().then((user) => {
-            const newMessage = new MessageModel({
-              user: user._id,
-              text: message,
-            });
-
-            newMessage.save().then((message) => {
-              const postData = { users: user._id, messages: message._id };
+          newUser
+            .save()
+            .then((userObj) => {
+              const postData = { users: userObj._id };
 
               const newRoom = new RoomModel(postData);
               newRoom.save().then((roomObj) => {
                 return res.status(200).json({
                   status: "success",
                   roomId: roomObj._id,
+                  userId: userObj._id,
                 });
               });
+            })
+            .catch(() => {
+              res.sendStatus(500);
             });
-          });
         } else {
-          const newMessage = new MessageModel({
-            user: user._id,
-            text: message,
-          });
-          newMessage.save().then((message) => {
-            const postData = { users: user._id, messages: message._id };
+          const postData = { users: user._id };
 
-            const newRoom = new RoomModel(postData);
-            newRoom.save().then((roomObj) => {
-              return res.status(200).json({
-                status: "success",
-                roomId: roomObj._id,
-              });
+          const newRoom = new RoomModel(postData);
+          newRoom.save().then((roomObj) => {
+            return res.status(200).json({
+              status: "success",
+              roomId: roomObj._id,
+              userId: user._id,
             });
           });
         }

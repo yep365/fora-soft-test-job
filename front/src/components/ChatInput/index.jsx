@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "antd";
+import { Input, Button } from "antd";
 
 import "./ChatInput.scss";
 
@@ -12,7 +12,12 @@ const ChatInput = ({ roomIsLoading, messageIsLoading }) => {
     <div className="chat-input">
       {!!roomIsLoading || !!messageIsLoading ? null : (
         <>
-          <input type="text" value={input} onChange={(e) => onInputChange(e)} />
+          <Input
+            size="large"
+            type="text"
+            value={input}
+            onChange={(e) => onInputChange(e)}
+          />
           <Button disabled={!input} type={input ? "primary" : "default"}>
             {input ? "Отправте сообщение" : "Введите сообщение"}
           </Button>
