@@ -1,0 +1,19 @@
+.chat {
+  &-sigin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__bottom {
+      display: flex;
+      align-items: center;
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 15rem;
+    }
+    input {
+      font-size: 19px;
+      height: 2.1rem;
+    }
+  }
+}

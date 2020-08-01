@@ -1,6 +1,6 @@
 const initialState = {
-  roomId: undefined,
-  isLoading: false,
+  roomId: null,
+  roomIsLoading: true,
   rooms: [],
 };
 export default (state = initialState, { type, payload }) => {
@@ -9,13 +9,13 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         roomId: payload,
-        isLoading: false,
+        roomIsLoading: true,
       };
     case "ROOM:SET_ROOMS":
       return {
         ...state,
         rooms: payload,
-        isLoading: false,
+        roomIsLoading: false,
       };
 
     default:

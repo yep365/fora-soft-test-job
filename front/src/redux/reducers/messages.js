@@ -1,6 +1,7 @@
 const initialState = {
   items: [],
-  isLoading: false,
+  messageIsLoading: false,
+  error: false,
 };
 export default (state = initialState, { type, payload }) => {
   switch (type) {
@@ -9,6 +10,11 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         messages: payload,
         isLoading: false,
+      };
+    case "MESSAGES:FAILURE":
+      return {
+        ...state,
+        error: true,
       };
 
     default:

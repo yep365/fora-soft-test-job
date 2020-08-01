@@ -7,20 +7,42 @@
   color: white;
   text-align: left;
   margin: 1px 0;
-  padding: 15px;
+  padding: 4px;
+  overflow: auto;
   &-bubble {
+    margin-bottom: 10px;
     border-radius: 12px 12px 12px 0;
     padding: 1.2rem 0.7rem 1.2rem 0.5rem;
     width: fit-content;
-    background-color: red;
+    background-color: rgb(121, 113, 113);
     &--isme {
       border-radius: 12px 12px 0 12px;
-      background-color: green;
+      background-color: rgba(79, 199, 79, 0.808);
       text-align: right;
       padding: 1.2rem 0.5rem 1.2rem 0.7rem;
     }
   }
   &--isme {
-    justify-content: flex-end;
+    flex-direction: row-reverse;
+  }
+  &-author {
+    margin-top: 25px;
+    font-size: 13px;
+    color: #fafafa;
+    background-color: cornflowerblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    text-align: center;
+    line-break: auto;
+    padding: 4px;
+    border-radius: 15px;
+    margin-right: 7px;
+    &--isme {
+      margin-right: 0;
+      margin-left: 7px;
+      background-color: rgb(14, 87, 170);
+    }
   }
 }

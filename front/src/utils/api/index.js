@@ -1,1 +1,1 @@
-export { default as roomApi } from "./room";
+export { default as messagesApi } from "./messages";
