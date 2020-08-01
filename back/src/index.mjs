@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import { createServer } from "http";
 import cors from "cors";
 
-import "./core/socket.mjs";
+import "./core/db.mjs";
 import { createRoutes, createSocket } from "./core/index.mjs";
 
 dotenv.config();

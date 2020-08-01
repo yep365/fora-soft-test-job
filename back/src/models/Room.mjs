@@ -1,14 +1,19 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose from "mongoose";
 
-const RoomSchema = new Schema(
+const RoomSchema = new mongoose.Schema(
   {
-    users: { type: Schema.Types.ObjectId, ref: "User" },
+    users: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    messages: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Message",
+      require: true,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const RoomSchema = mongoose.model("Room", RoomSchema);
+const RoomModel = mongoose.model("Room", RoomSchema);
 
-export default RoomSchema;
+export default RoomModel;
