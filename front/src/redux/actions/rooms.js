@@ -1,5 +1,6 @@
 import { roomsApi } from "../../utils/api";
 import { messagesActions } from "../actions";
+import { socket } from "../../core";
 
 const Actions = {
   setCurrentRoom: (room) => ({
@@ -24,6 +25,7 @@ const Actions = {
       .then(({ data }) => {
         dispatch(messagesActions.setItems(data));
         dispatch(Actions.setRoomLoading(false));
+        socket.emit("ROOM:JOIN", roomId, userName);
       })
       .catch(() => {
         dispatch(messagesActions.setFaulure(true));

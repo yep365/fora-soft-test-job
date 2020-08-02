@@ -25,14 +25,18 @@ const Messages = ({ roomIsLoading, messages, userName }) => {
       {roomIsLoading ? (
         <Spin tip="Загрузка" />
       ) : (
-        messages?.map((item, index) => (
-          <MessageItem
-            text={item.text}
-            isMe={!!(item.user.name === userName)}
-            author={item.user.name}
-            key={index}
-          />
-        ))
+        messages?.map((item, index) => {
+          return item.type === "USER_CONNECTED" ? (
+            <div className="message-new-user">{item.text}</div>
+          ) : (
+            <MessageItem
+              text={item.text}
+              isMe={!!(item.user.name === userName)}
+              author={item.user.name}
+              key={index}
+            />
+          );
+        })
       )}
     </div>
   );

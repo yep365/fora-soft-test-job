@@ -21,10 +21,28 @@ const Chat = () => {
   const onNewMessage = (newMessage) => {
     dispatch(messagesActions.addMessage(newMessage));
   };
+  const onNewOnlineUser = (newUser) => {
+    let messageObj = {
+      text: `${newUser} присоединился!`,
+      type: "USER_CONNECTED",
+    };
+    dispatch(messagesActions.addMessage(messageObj));
+  };
+  const onUserDisconnect = (userName) => {
+    let messageObj = {
+      text: `${userName} покинул чат!`,
+      type: "USER_CONNECTED",
+    };
+    dispatch(messagesActions.addMessage(messageObj));
+  };
   useEffect(() => {
-    socket.on("SERVER:NEW_MESSAGE", onNewMessage);
+    socket.on("ROOM:NEW_MESSAGE", onNewMessage);
+    socket.on("USER:CONNECTED", onNewOnlineUser);
+    socket.on("ROOM:USER_DISCONNECTED", onUserDisconnect);
     return () => {
-      socket.removeListener("SERVER:NEW_MESSAGE", onNewMessage);
+      socket.removeListener("ROOM:NEW_MESSAGE", onNewMessage);
+      socket.removeListener("USER:CONNECTED", onNewOnlineUser);
+      socket.removeListener("ROOM:USER_DISCONNECTED", onUserDisconnect);
     };
   }, [roomId]);
 

@@ -12,11 +12,13 @@ const Actions = {
     payload: message,
   }),
   uploadMessage: (newMessage) => (dispatch) => {},
+  // newUserMessage:(name)=>(dispatch)=>{
+  //   dispatch(Actions.addMessage(name));
+  // },
   sendMessage: (newMessage) => (dispatch, getState) => {
-    const { messages, rooms } = getState();
-    const { items } = messages;
+    const { rooms } = getState();
     const { roomId } = rooms;
-    // const newArr = items.concat(Array(newMessage));
+
     const sendObj = {
       text: newMessage.text,
       roomId: roomId,

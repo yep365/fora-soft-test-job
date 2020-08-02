@@ -47,7 +47,7 @@ export default class MessageController {
             };
             console.log(sendObj);
             res.json(sendObj);
-            this.io.emit("SERVER:NEW_MESSAGE", sendObj);
+            this.io.emit("ROOM:SEND_MESSAGE", sendObj);
           });
         })
 
