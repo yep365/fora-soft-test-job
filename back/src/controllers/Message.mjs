@@ -11,8 +11,8 @@ export default class MessageController {
   index = (req, res) => {
     try {
       const roomId = req.body.roomId;
-      MessageModel.find({ room: roomId })
-        .populate("user")
+      MessageModel.find({ room: roomId }, "text user -_id")
+        .populate("user", "name -_id")
         .exec(function (err, messages) {
           if (err) {
             return res.status(404).json({
@@ -36,14 +36,17 @@ export default class MessageController {
 
       const message = new MessageModel(postData);
       message
+
         .save()
         .then(() => {
           res.sendStatus(204);
         })
         .catch(() => {
+          console.log(`object`);
           res.sendStatus(500);
         });
     } catch (e) {
+      console.log(`AAAAAAAAAAA`);
       return res.status(500).json({ status: "error", message: e });
     }
   };
