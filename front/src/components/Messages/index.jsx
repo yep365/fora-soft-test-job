@@ -6,74 +6,31 @@ import { MessageItem } from "../../components";
 
 import "./Messages.scss";
 
-const Messages = ({ messageIsLoading, roomIsLoading, messages, userName }) => {
+const Messages = ({ roomIsLoading, messages, userName }) => {
   const messagesRef = useRef(null);
-
-  // let messages = [
-  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
-  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
-  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
-  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
-  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
-  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
-  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
-  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
-  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
-  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
-  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
-  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
-  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
-  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
-  // ];
 
   useEffect(() => {
     if (messages) {
       messagesRef.current.scrollTo(0, 9999999999);
     }
-  }, []);
+  }, [messages]);
+
   return (
     <div
       className={classNames("messages", {
-        "messages--loading": messageIsLoading || roomIsLoading,
+        "messages--loading": roomIsLoading,
       })}
       ref={messagesRef}
     >
-      {messageIsLoading || roomIsLoading ? (
-        <Spin />
+      {roomIsLoading ? (
+        <Spin tip="Загрузка" />
       ) : (
-        messages?.map((item) => (
+        messages?.map((item, index) => (
           <MessageItem
             text={item.text}
             isMe={!!(item.user.name === userName)}
             author={item.user.name}
+            key={index}
           />
         ))
       )}

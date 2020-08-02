@@ -11,6 +11,12 @@ const Layout = ({ match }) => {
     params: { roomId },
   } = match;
   useEffect(() => {
+    if (roomId) {
+      //   console.log(roomId);
+      dispatch(roomsActions.setCurrentRoom(roomId));
+    }
+  }, [roomId]);
+  useEffect(() => {
     if (roomId && userName) {
       dispatch(roomsActions.fetchMessages(roomId));
     }

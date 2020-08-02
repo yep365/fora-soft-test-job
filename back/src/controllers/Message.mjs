@@ -10,7 +10,7 @@ export default class MessageController {
 
   index = (req, res) => {
     try {
-      const roomId = req.body.roomId;
+      const roomId = req.params.roomId;
       MessageModel.find({ room: roomId }, "text user -_id")
         .populate("user", "name -_id")
         .exec(function (err, messages) {
@@ -38,15 +38,23 @@ export default class MessageController {
       message
 
         .save()
-        .then(() => {
-          res.sendStatus(204);
+        .then((newMsg) => {
+          console.log(newMsg);
+          UserModel.findById(newMsg.user, "name -_id").then((foundUser) => {
+            const sendObj = {
+              text: newMsg.text,
+              user: { name: foundUser.name },
+            };
+            console.log(sendObj);
+            res.json(sendObj);
+            this.io.emit("SERVER:NEW_MESSAGE", sendObj);
+          });
         })
+
         .catch(() => {
-          console.log(`object`);
           res.sendStatus(500);
         });
     } catch (e) {
-      console.log(`AAAAAAAAAAA`);
       return res.status(500).json({ status: "error", message: e });
     }
   };

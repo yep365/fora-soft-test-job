@@ -14,7 +14,7 @@ const createRoutes = (app, io) => {
 
   app.post("/room", RoomController.createRoom);
 
-  app.get("/messages", MessageController.index);
+  app.post("/messages/:roomId", MessageController.index);
   app.post("/messages", MessageController.create);
 
   app.post("/user", UserController.indexUser);

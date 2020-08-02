@@ -1,6 +1,10 @@
 import { axios } from "../../core";
 
 export default {
-  getRoom: (room) => axios.get(`/room/${room}`),
-  createRoom: (postData) => axios.post("/room", postData),
+  uploadMessage: (postData) =>
+    axios.post("messages", postData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }),
 };

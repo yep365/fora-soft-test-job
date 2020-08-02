@@ -6,10 +6,7 @@ const Actions = {
     type: "ROOM:SET_CURRENT_ROOM",
     payload: room,
   }),
-  setRooms: (rooms) => ({
-    type: "ROOM:SET_ROOMS",
-    payload: rooms,
-  }),
+
   setRoomLoading: (status) => ({
     type: "ROOM:SET_LOADING",
     payload: status,
@@ -20,10 +17,10 @@ const Actions = {
   }),
   fetchMessages: (roomId) => (dispatch, getState) => {
     const { user } = getState();
-    const { engName } = user;
+    const { userName } = user;
 
     roomsApi
-      .getMessages(roomId, engName)
+      .getMessages(roomId, userName)
       .then(({ data }) => {
         dispatch(messagesActions.setItems(data));
         dispatch(Actions.setRoomLoading(false));
@@ -32,7 +29,6 @@ const Actions = {
         dispatch(messagesActions.setFaulure(true));
         dispatch(Actions.setRoomLoading(false));
       });
-    dispatch(Actions.setCurrentRoom());
   },
   createRoom: (name) => (dispatch) => {
     roomsApi

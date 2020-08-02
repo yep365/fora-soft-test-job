@@ -18,10 +18,11 @@ export default (http) => {
         name: name,
       });
     });
-    socket.on("disconnect", () => {
-      console.log("disconnect");
-      socket.broadcast.emit("ROOM:USER_DISCONNECTED", users[socket.id]);
-      delete users[socket.id];
-    });
+    // socket.on("disconnect", () => {
+    //   console.log("disconnect");
+    //   socket.broadcast.emit("ROOM:USER_DISCONNECTED", users[socket.id]);
+
+    // });
   });
+  return io;
 };

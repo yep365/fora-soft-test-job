@@ -9,6 +9,11 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         items: payload,
       };
+    case "MESSAGES:ADD_MESSAGE":
+      return {
+        ...state,
+        items: [...state.items, payload],
+      };
     case "MESSAGES:FAILURE":
       return {
         ...state,
