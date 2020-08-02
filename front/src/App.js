@@ -1,12 +1,15 @@
 import React from "react";
+import { Route, Switch } from "react-router";
 
-import { Header, Chat } from "./components";
+import { Layout } from "./components";
 
 function App() {
   return (
     <div className="wrapper">
-      <Header />
-      <Chat />
+      <Switch>
+        <Route exact path="/" component={Layout} />
+        <Route path="/room/:roomId" component={Layout} />
+      </Switch>
     </div>
   );
 }

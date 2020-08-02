@@ -6,53 +6,53 @@ import { MessageItem } from "../../components";
 
 import "./Messages.scss";
 
-const Messages = ({ messageIsLoading, roomIsLoading }) => {
+const Messages = ({ messageIsLoading, roomIsLoading, messages, userName }) => {
   const messagesRef = useRef(null);
 
-  let messages = [
-    { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-    { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-    { message: "Отлично", isMe: true, author: "Mike Mike" },
-    { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-    { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-    { message: "Отлично", isMe: true, author: "Mike Mike" },
-    { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-    { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-    { message: "Отлично", isMe: true, author: "Mike Mike" },
-    { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-    { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-    { message: "Отлично", isMe: true, author: "Mike Mike" },
-    { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-    { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-    { message: "Отлично", isMe: true, author: "Mike Mike" },
-    { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-    { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-    { message: "Отлично", isMe: true, author: "Mike Mike" },
-    { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-    { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-    { message: "Отлично", isMe: true, author: "Mike Mike" },
-    { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-    { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-    { message: "Отлично", isMe: true, author: "Mike Mike" },
-    { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-    { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-    { message: "Отлично", isMe: true, author: "Mike Mike" },
-    { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-    { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-    { message: "Отлично", isMe: true, author: "Mike Mike" },
-    { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-    { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-    { message: "Отлично", isMe: true, author: "Mike Mike" },
-    { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-    { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-    { message: "Отлично", isMe: true, author: "Mike Mike" },
-    { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-    { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-    { message: "Отлично", isMe: true, author: "Mike Mike" },
-    { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
-    { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
-    { message: "Отлично", isMe: true, author: "Mike Mike" },
-  ];
+  // let messages = [
+  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
+  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
+  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
+  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
+  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
+  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
+  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
+  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
+  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
+  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
+  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
+  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
+  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
+  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
+  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
+  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
+  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
+  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
+  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
+  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
+  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
+  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
+  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
+  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
+  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
+  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
+  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
+  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
+  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
+  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
+  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
+  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
+  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
+  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
+  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
+  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
+  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
+  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
+  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
+  //   { message: "Привет, как дела??", isMe: true, author: "Mike Mike" },
+  //   { message: "Нормально, у тебя?", isMe: false, author: "Petya Petya" },
+  //   { message: "Отлично", isMe: true, author: "Mike Mike" },
+  // ];
 
   useEffect(() => {
     if (messages) {
@@ -71,9 +71,9 @@ const Messages = ({ messageIsLoading, roomIsLoading }) => {
       ) : (
         messages?.map((item) => (
           <MessageItem
-            text={item.message}
-            isMe={item.isMe}
-            author={item.author}
+            text={item.text}
+            isMe={!!(item.user.name === userName)}
+            author={item.user.name}
           />
         ))
       )}

@@ -1,19 +1,13 @@
-import { messagesApi } from "../../utils/api";
-
 const Actions = {
-  setItems: (messages) => ({
-    type: "MESSAGES:SET_ITEMS",
-    payload: messages,
-  }),
-  fetchMessages: () => (dispatch) => {
-    messagesApi
-      .getRoom()
-      .then(({ data }) => dispatch(Actions.setItems(data)))
-      .catch(() => {
-        dispatch({
-          type: "MESSAGES:FAILURE",
-        });
-      });
+  setItems: (messages) => (dispatch) => {
+    dispatch({
+      type: "MESSAGES:SET_ITEMS",
+      payload: messages,
+    });
   },
+  setFaulure: (status) => ({
+    type: "MESSAGES:FAILURE",
+    payload: status,
+  }),
 };
 export default Actions;
