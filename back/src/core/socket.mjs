@@ -9,11 +9,9 @@ export default (http) => {
       socket.roomId = roomId;
       socket.name = name;
       socket.join(roomId);
-      socket.to(roomId).broadcast.emit("USER:CONNECTED", name);
+      socket.to(roomId).broadcast.emit("USER:CONNECTED", name, true);
     });
     socket.on("ROOM:SEND_MESSAGE", (roomId, message) => {
-      console.log("2222");
-      console.log(message);
       const newMessage = {
         text: message.text,
         user: { name: message.name },
@@ -24,9 +22,8 @@ export default (http) => {
     socket.on("disconnect", () => {
       socket
         .to(socket.roomId)
-        .broadcast.emit("ROOM:USER_DISCONNECTED", socket.name);
+        .broadcast.emit("ROOM:USER_DISCONNECTED", socket.name, false);
     });
+    return socket;
   });
-
-  return io;
 };

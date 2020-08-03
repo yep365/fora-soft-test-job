@@ -7,18 +7,19 @@ import { roomsActions } from "../../redux/actions";
 const Layout = ({ match }) => {
   const dispatch = useDispatch();
   const { userName } = useSelector(({ user }) => user);
-  const {
-    params: { roomId },
-  } = match;
+  const roomId = match?.params?.roomId;
+
   useEffect(() => {
     if (roomId) {
-      //   console.log(roomId);
       dispatch(roomsActions.setCurrentRoom(roomId));
     }
   }, [roomId]);
   useEffect(() => {
     if (roomId && userName) {
       dispatch(roomsActions.fetchMessages(roomId));
+    }
+    if (!roomId && userName) {
+      dispatch(roomsActions.createRoom(userName));
     }
   }, [roomId, userName]);
   return (

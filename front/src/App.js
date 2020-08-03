@@ -1,14 +1,22 @@
 import React from "react";
-import { Route, Switch } from "react-router";
+import { Route, Switch, useLocation, Redirect } from "react-router";
+import { useSelector } from "react-redux";
 
 import { Layout } from "./components";
 
 function App() {
+  const { roomId } = useSelector(({ rooms }) => rooms);
+
   return (
     <div className="wrapper">
       <Switch>
-        <Route exact path="/" component={Layout} />
         <Route path="/room/:roomId" component={Layout} />
+        <Route
+          path="/"
+          render={() =>
+            roomId !== null ? <Redirect to={`/room/${roomId}`} /> : <Layout />
+          }
+        />
       </Switch>
     </div>
   );

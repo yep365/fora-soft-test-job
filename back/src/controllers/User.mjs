@@ -22,7 +22,6 @@ export default class UserCntrl {
         if (user === null) {
           const newUser = new UserModel({ name });
           newUser.save().then((obj) => {
-            console.log(obj);
             return res.status(200).json(obj);
           });
         } else {

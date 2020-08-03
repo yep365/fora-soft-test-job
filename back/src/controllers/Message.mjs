@@ -39,16 +39,13 @@ export default class MessageController {
 
         .save()
         .then((newMsg) => {
-          console.log(newMsg);
           UserModel.findById(newMsg.user, "name -_id").then((foundUser) => {
             const sendObj = {
               text: newMsg.text,
               user: { name: foundUser.name },
-              date: newMsg.createdAt,
+              date: newMsg.date,
             };
-            console.log(sendObj);
             res.json(sendObj);
-            // this.io.emit("ROOM:SEND_MESSAGE", sendObj);
           });
         })
 

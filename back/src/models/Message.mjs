@@ -8,7 +8,6 @@ const MessageSchema = new mongoose.Schema(
     date: { type: Date, default: Date.now },
   },
   {
-    timestamps: true,
     usePushEach: true,
   }
 );

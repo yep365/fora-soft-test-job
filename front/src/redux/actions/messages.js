@@ -30,10 +30,16 @@ const Actions = {
       date: new Date().toISOString(),
     };
 
-    messagesApi.uploadMessage(sendObj).then((data) => {
-      socket.emit("ROOM:SEND_MESSAGE", roomId, sendObj);
-      dispatch(Actions.addMessage(messageObj));
-    });
+    messagesApi
+      .uploadMessage(sendObj)
+      .then((data) => {
+        socket.emit("ROOM:SEND_MESSAGE", roomId, sendObj);
+        dispatch(Actions.addMessage(messageObj));
+        dispatch(Actions.setFaulure(false));
+      })
+      .catch(() => {
+        dispatch(Actions.setFaulure(true));
+      });
   },
   setFaulure: (status) => ({
     type: "MESSAGES:FAILURE",

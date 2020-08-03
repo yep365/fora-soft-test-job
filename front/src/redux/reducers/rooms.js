@@ -2,7 +2,7 @@ const initialState = {
   roomId: null,
   roomIsLoading: true,
   rooms: [],
-  error: false,
+  errorRoom: "",
 };
 export default (state = initialState, { type, payload }) => {
   switch (type) {
@@ -19,7 +19,7 @@ export default (state = initialState, { type, payload }) => {
     case "ROOM:FAILURE":
       return {
         ...state,
-        error: payload,
+        errorRoom: payload,
       };
     case "ROOM:SET_LOADING":
       return {

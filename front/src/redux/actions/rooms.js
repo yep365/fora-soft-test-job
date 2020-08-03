@@ -12,9 +12,9 @@ const Actions = {
     type: "ROOM:SET_LOADING",
     payload: status,
   }),
-  setRoomFailure: (status) => ({
+  setRoomFailure: (errMsg) => ({
     type: "ROOM:FAILURE",
-    payload: status,
+    payload: errMsg,
   }),
   fetchMessages: (roomId) => (dispatch, getState) => {
     const { user } = getState();
@@ -28,7 +28,9 @@ const Actions = {
         socket.emit("ROOM:JOIN", roomId, userName);
       })
       .catch(() => {
-        dispatch(messagesActions.setFaulure(true));
+        dispatch(
+          Actions.setRoomFailure("Не удалось загрузить сообщения из комнаты!")
+        );
         dispatch(Actions.setRoomLoading(false));
       });
   },
@@ -36,11 +38,10 @@ const Actions = {
     roomsApi
       .createRoom({ name: name })
       .then(({ data }) => {
-        // console.log(data.roomId);
         dispatch(Actions.setCurrentRoom(data.roomId));
       })
       .catch(() => {
-        dispatch(Actions.setRoomFailure(true));
+        dispatch(Actions.setRoomFailure("Не удалось создать комнату"));
       });
   },
 };

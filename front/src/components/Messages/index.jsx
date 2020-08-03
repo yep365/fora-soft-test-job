@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Spin } from "antd";
 import classNames from "classnames";
 
-import { MessageItem } from "../../components";
+import { MessageItem, NotificationMessage } from "../../components";
 
 import "./Messages.scss";
 
@@ -26,8 +26,12 @@ const Messages = ({ roomIsLoading, messages, userName }) => {
         <Spin tip="Загрузка" />
       ) : (
         messages?.map((item, index) => {
-          return item.type === "USER_CONNECTED" ? (
-            <div className="message-new-user">{item.text}</div>
+          return item.type === "action" ? (
+            <NotificationMessage
+              text={item.text}
+              key={index}
+              date={item.date}
+            />
           ) : (
             <MessageItem
               text={item.text}

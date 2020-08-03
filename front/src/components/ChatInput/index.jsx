@@ -6,7 +6,7 @@ import { messagesActions } from "../../redux/actions";
 
 import "./ChatInput.scss";
 
-const ChatInput = ({ roomIsLoading, userName }) => {
+const ChatInput = ({ roomIsLoading, userName, errorRoom, errorMessage }) => {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
   const onInputChange = (e) => {
@@ -20,7 +20,7 @@ const ChatInput = ({ roomIsLoading, userName }) => {
   };
   return (
     <div className="chat-input">
-      {!!roomIsLoading ? null : (
+      {!!roomIsLoading || errorRoom || errorMessage ? null : (
         <>
           <Input
             size="large"
