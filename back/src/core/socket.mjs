@@ -13,10 +13,13 @@ export default (http) => {
     });
     socket.on("ROOM:SEND_MESSAGE", (roomId, message) => {
       console.log("2222");
-      socket.broadcast.emit("ROOM:NEW_MESSAGE", {
-        message: message,
-        name: name,
-      });
+      console.log(message);
+      const newMessage = {
+        text: message.text,
+        user: { name: message.name },
+        date: message.date,
+      };
+      socket.to(roomId).broadcast.emit("ROOM:NEW_MESSAGE", newMessage);
     });
     socket.on("disconnect", () => {
       socket

@@ -1,4 +1,5 @@
 import { messagesApi } from "../../utils/api";
+import { socket } from "../../core";
 
 const Actions = {
   setItems: (messages) => (dispatch) => {
@@ -11,10 +12,6 @@ const Actions = {
     type: "MESSAGES:ADD_MESSAGE",
     payload: message,
   }),
-  uploadMessage: (newMessage) => (dispatch) => {},
-  // newUserMessage:(name)=>(dispatch)=>{
-  //   dispatch(Actions.addMessage(name));
-  // },
   sendMessage: (newMessage) => (dispatch, getState) => {
     const { rooms } = getState();
     const { roomId } = rooms;
@@ -23,12 +20,20 @@ const Actions = {
       text: newMessage.text,
       roomId: roomId,
       name: newMessage.user.name,
+      date: new Date().toISOString(),
+    };
+    const messageObj = {
+      text: newMessage.text,
+      user: {
+        name: newMessage.user.name,
+      },
+      date: new Date().toISOString(),
     };
 
-    messagesApi.uploadMessage(sendObj).then((data) => console.log(data));
-
-    // dispatch(Actions.addMessage(newMessage));
-    // dispatch(Actions.setItems(newArr));
+    messagesApi.uploadMessage(sendObj).then((data) => {
+      socket.emit("ROOM:SEND_MESSAGE", roomId, sendObj);
+      dispatch(Actions.addMessage(messageObj));
+    });
   },
   setFaulure: (status) => ({
     type: "MESSAGES:FAILURE",

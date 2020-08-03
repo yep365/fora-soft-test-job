@@ -11,7 +11,7 @@ export default class MessageController {
   index = (req, res) => {
     try {
       const roomId = req.params.roomId;
-      MessageModel.find({ room: roomId }, "text user -_id")
+      MessageModel.find({ room: roomId }, "text user date -_id")
         .populate("user", "name -_id")
         .exec(function (err, messages) {
           if (err) {
@@ -44,10 +44,11 @@ export default class MessageController {
             const sendObj = {
               text: newMsg.text,
               user: { name: foundUser.name },
+              date: newMsg.createdAt,
             };
             console.log(sendObj);
             res.json(sendObj);
-            this.io.emit("ROOM:SEND_MESSAGE", sendObj);
+            // this.io.emit("ROOM:SEND_MESSAGE", sendObj);
           });
         })
 

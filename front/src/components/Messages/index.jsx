@@ -34,6 +34,7 @@ const Messages = ({ roomIsLoading, messages, userName }) => {
               isMe={!!(item.user.name === userName)}
               author={item.user.name}
               key={index}
+              date={item.date}
             />
           );
         })

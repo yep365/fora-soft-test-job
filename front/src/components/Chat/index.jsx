@@ -19,6 +19,7 @@ const Chat = () => {
   //   }
   // }, [userName]);
   const onNewMessage = (newMessage) => {
+    console.log(newMessage);
     dispatch(messagesActions.addMessage(newMessage));
   };
   const onNewOnlineUser = (newUser) => {
