@@ -16,7 +16,5 @@ const createRoutes = (app, io) => {
 
   app.post("/messages/:roomId", MessageController.index);
   app.post("/messages", MessageController.create);
-
-  app.post("/user", UserController.indexUser);
 };
 export default createRoutes;

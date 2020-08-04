@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Chat, Header } from "../../components";
+import { Header } from "../../components";
+import { Chat } from "../../containers";
 import { roomsActions } from "../../redux/actions";
 
 const Layout = ({ match }) => {

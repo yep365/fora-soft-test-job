@@ -1,7 +1,4 @@
-import express from "express";
-import socket from "socket.io";
-
-import { UserModel, RoomModel, MessageModel } from "../models/index.mjs";
+import { UserModel, MessageModel } from "../models/index.mjs";
 
 export default class MessageController {
   constructor(io) {
@@ -36,7 +33,6 @@ export default class MessageController {
 
       const message = new MessageModel(postData);
       message
-
         .save()
         .then((newMsg) => {
           UserModel.findById(newMsg.user, "name -_id").then((foundUser) => {
@@ -48,7 +44,6 @@ export default class MessageController {
             res.json(sendObj);
           });
         })
-
         .catch(() => {
           res.sendStatus(500);
         });

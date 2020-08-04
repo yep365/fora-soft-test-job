@@ -2,8 +2,6 @@ import React from "react";
 import { Button } from "antd";
 import { useSelector } from "react-redux";
 
-import { SelectChat } from "../../components";
-
 import "./Header.scss";
 
 const Header = () => {
