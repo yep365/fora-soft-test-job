@@ -26,7 +26,7 @@ const Messages = ({ roomIsLoading, messages, userName }) => {
         <Spin tip="Загрузка" />
       ) : (
         messages?.map((item, index) => {
-          return item.type === "action" ? (
+          return item.type === "logInOut" ? (
             <NotificationMessage
               text={item.text}
               key={index}

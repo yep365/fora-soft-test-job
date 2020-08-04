@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Alert } from "antd";
 
-import { roomsActions, messagesActions } from "../../redux/actions";
+import {
+  roomsActions,
+  messagesActions,
+  userActions,
+} from "../../redux/actions";
 import { Messages, ChatInput, SignIn } from "../../components";
 import socket from "../../core/socket";
 
@@ -27,19 +31,24 @@ const Chat = () => {
   const onUserLogStatus = (userName, status) => {
     let messageObj = {
       text: `${userName} ${!!status ? `присоединился! ` : `покинул чат! `}`,
-      type: "action",
+      type: "logInOut",
       date: new Date(),
     };
     dispatch(messagesActions.addMessage(messageObj));
   };
+  const onActiveUsers = (activeUsers) => {
+    dispatch(userActions.setActiveUsers(activeUsers));
+  };
   useEffect(() => {
-    socket.on("ROOM:NEW_MESSAGE", onNewMessage);
     socket.on("USER:CONNECTED", onUserLogStatus);
+    socket.on("ROOM:NEW_MESSAGE", onNewMessage);
     socket.on("ROOM:USER_DISCONNECTED", onUserLogStatus);
+    socket.on("ROOM:ACTIVE_USERS", onActiveUsers);
     return () => {
-      socket.removeListener("ROOM:NEW_MESSAGE", onNewMessage);
       socket.removeListener("USER:CONNECTED", onUserLogStatus);
+      socket.removeListener("ROOM:NEW_MESSAGE", onNewMessage);
       socket.removeListener("ROOM:USER_DISCONNECTED", onUserLogStatus);
+      socket.removeListener("ROOM:ACTIVE_USERS", onActiveUsers);
     };
   }, [roomId]);
 

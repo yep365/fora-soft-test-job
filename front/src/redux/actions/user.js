@@ -1,9 +1,11 @@
 const Actions = {
-  setUserName: (name) => (dispatch) => {
-    dispatch({
-      type: "USER:SET_NAME",
-      payload: name,
-    });
-  },
+  setUserName: (name) => ({
+    type: "USER:SET_NAME",
+    payload: name,
+  }),
+  setActiveUsers: (activeUsers) => ({
+    type: "USER:SET_ACTIVE_USERS",
+    payload: activeUsers,
+  }),
 };
 export default Actions;

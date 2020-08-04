@@ -1,5 +1,6 @@
 const initialState = {
   userName: null,
+  activeUsers: null,
 };
 export default (state = initialState, { type, payload }) => {
   switch (type) {
@@ -7,6 +8,11 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         userName: payload,
+      };
+    case "USER:SET_ACTIVE_USERS":
+      return {
+        ...state,
+        activeUsers: payload,
       };
 
     default:
