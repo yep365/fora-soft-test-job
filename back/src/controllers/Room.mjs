@@ -1,7 +1,4 @@
-import express from "express";
-import socket from "socket.io";
-
-import { UserModel, RoomModel, MessageModel } from "../models/index.mjs";
+import { RoomModel } from "../models/index.mjs";
 
 export default class RoomController {
   constructor(io) {
