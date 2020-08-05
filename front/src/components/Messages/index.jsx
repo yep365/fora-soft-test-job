@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Spin } from "antd";
 import classNames from "classnames";
+import PropTypes from "prop-types";
 
 import { MessageItem, NotificationMessage } from "../../components";
 
@@ -46,5 +47,9 @@ const Messages = ({ roomIsLoading, messages, userName }) => {
     </div>
   );
 };
-
+Messages.propTypes = {
+  roomIsLoading: PropTypes.bool,
+  messages: PropTypes.arrayOf(PropTypes.object),
+  userName: PropTypes.string,
+};
 export default Messages;

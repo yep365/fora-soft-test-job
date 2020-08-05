@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { roomsActions, messagesActions, userActions } from "../redux/actions";
+import { messagesActions, userActions } from "../redux/actions";
 import socket from "../core/socket";
 import { Chat as BaseChat } from "../components";
 

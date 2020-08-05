@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, useLocation, Redirect } from "react-router";
+import { Route, Switch, Redirect } from "react-router";
 import { useSelector } from "react-redux";
 
 import { Layout } from "./components";
@@ -7,6 +7,7 @@ import { Layout } from "./components";
 function App() {
   const { roomId } = useSelector(({ rooms }) => rooms);
 
+  //If user didn't go by exact link, then it creates a new room for him
   return (
     <div className="wrapper">
       <Switch>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Alert } from "antd";
+import PropTypes from "prop-types";
 
 import { Messages, ChatInput, SignIn } from "../../components";
 
@@ -16,7 +17,6 @@ const Chat = ({ userName, roomIsLoading, errorRoom, items, errorMessage }) => {
           }`}
         />
       )}
-
       {userName ? (
         <>
           <Messages
@@ -36,6 +36,13 @@ const Chat = ({ userName, roomIsLoading, errorRoom, items, errorMessage }) => {
       )}
     </div>
   );
+};
+Chat.propTypes = {
+  userName: PropTypes.string,
+  roomIsLoading: PropTypes.bool,
+  errorRoom: PropTypes.string,
+  items: PropTypes.arrayOf(PropTypes.object),
+  errorMessage: PropTypes.bool,
 };
 
 export default Chat;

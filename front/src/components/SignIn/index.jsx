@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Button, Input } from "antd";
 
 import { userActions } from "../../redux/actions";
 
 import "./SignIn.scss";
-import user from "../../redux/reducers/user";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -23,6 +22,7 @@ const SignIn = () => {
       sendName();
     }
   };
+
   return (
     <div className="chat-sigin">
       <h1>Введите Ваше имя</h1>

@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import PropTypes from "prop-types";
 
-import { Header, Footer } from "../../components";
-import { Chat } from "../../containers";
+import { Header } from "../../components";
+import { Chat, Footer } from "../../containers";
 import { roomsActions } from "../../redux/actions";
 
 const Layout = ({ match }) => {
@@ -15,6 +16,7 @@ const Layout = ({ match }) => {
       dispatch(roomsActions.setCurrentRoom(roomId));
     }
   }, [roomId]);
+
   useEffect(() => {
     if (roomId && userName) {
       dispatch(roomsActions.fetchMessages(roomId));
@@ -23,6 +25,7 @@ const Layout = ({ match }) => {
       dispatch(roomsActions.createRoom(userName));
     }
   }, [roomId, userName]);
+
   return (
     <>
       <Header />
@@ -30,6 +33,9 @@ const Layout = ({ match }) => {
       <Footer />
     </>
   );
+};
+Layout.propTypes = {
+  match: PropTypes.object,
 };
 
 export default Layout;

@@ -1,5 +1,5 @@
 import React from "react";
-import classNames from "classnames";
+import PropTypes from "prop-types";
 
 import { Time } from "../../components";
 
@@ -10,6 +10,9 @@ const NotificationMessage = ({ text, date }) => {
       <Time date={String(date)} />
     </div>
   );
+};
+NotificationMessage.propTypes = {
+  text: PropTypes.string,
 };
 
 export default NotificationMessage;

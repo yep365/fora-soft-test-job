@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "antd";
 import { useSelector } from "react-redux";
 
 import "./Header.scss";

@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import ruLocale from "date-fns/locale/ru";
-import classNames from "classnames";
 
-const Time = ({ date, isMe }) => {
+const Time = ({ date }) => {
   let convertedDate = new Date(date);
 
   return (

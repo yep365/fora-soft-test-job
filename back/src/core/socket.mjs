@@ -37,6 +37,10 @@ export default (http) => {
         .broadcast.emit("ROOM:RECEIVE_AUDIO", blob, name, roomId);
     });
 
+    socket.on("ROOM:STOP_AUDIO", (name, roomId) => {
+      socket.to(roomId).broadcast.emit("ROOM:STOP_RECEIVE_AUDIO", name, roomId);
+    });
+
     socket.on("disconnect", () => {
       getDeleteIndex(users, socket.name, socket.roomId).then((index) => {
         //Deleting disconnected user from an array of active one's
@@ -49,6 +53,15 @@ export default (http) => {
           .to(socket.roomId)
           .broadcast.emit("ROOM:USER_DISCONNECTED", socket.name, false);
         socket.to(socket.roomId).emit("ROOM:ACTIVE_USERS", filteredUsers);
+        setTimeout(() => {
+          socket
+            .to(socket.roomId)
+            .broadcast.emit(
+              "ROOM:STOP_RECEIVE_AUDIO",
+              socket.name,
+              socket.roomId
+            );
+        }, 200);
       });
     });
     return socket;
