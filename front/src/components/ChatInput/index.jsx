@@ -12,6 +12,11 @@ const ChatInput = ({ roomIsLoading, userName, errorRoom, errorMessage }) => {
   const onInputChange = (e) => {
     setInput(e.target.value);
   };
+  const handleSendMessage = (e) => {
+    if (e && e.keyCode === 13) {
+      onSendMessage();
+    }
+  };
   const onSendMessage = () => {
     dispatch(
       messagesActions.sendMessage({ text: input, user: { name: userName } })
@@ -26,7 +31,8 @@ const ChatInput = ({ roomIsLoading, userName, errorRoom, errorMessage }) => {
             size="large"
             type="text"
             value={input}
-            onChange={(e) => onInputChange(e)}
+            onChange={onInputChange}
+            onKeyUp={handleSendMessage}
           />
           <Button
             disabled={!input}

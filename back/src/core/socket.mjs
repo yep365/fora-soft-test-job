@@ -31,6 +31,12 @@ export default (http) => {
       socket.to(roomId).broadcast.emit("ROOM:NEW_MESSAGE", newMessage);
     });
 
+    socket.on("ROOM:AUDIO", (blob, name, roomId) => {
+      socket
+        .to(roomId)
+        .broadcast.emit("ROOM:RECEIVE_AUDIO", blob, name, roomId);
+    });
+
     socket.on("disconnect", () => {
       getDeleteIndex(users, socket.name, socket.roomId).then((index) => {
         //Deleting disconnected user from an array of active one's

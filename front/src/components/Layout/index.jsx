@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Header } from "../../components";
+import { Header, Footer } from "../../components";
 import { Chat } from "../../containers";
 import { roomsActions } from "../../redux/actions";
 
@@ -27,6 +27,7 @@ const Layout = ({ match }) => {
     <>
       <Header />
       <Chat />
+      <Footer />
     </>
   );
 };

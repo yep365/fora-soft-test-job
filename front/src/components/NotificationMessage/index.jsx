@@ -7,7 +7,7 @@ const NotificationMessage = ({ text, date }) => {
   return (
     <div className="message-notification">
       {text}
-      <Time date={date} />
+      <Time date={String(date)} />
     </div>
   );
 };

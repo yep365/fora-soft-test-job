@@ -18,11 +18,21 @@ const SignIn = () => {
   const sendName = () => {
     dispatch(userActions.setUserName(nameInput));
   };
+  const handleSendMessage = (e) => {
+    if (e && e.keyCode === 13) {
+      sendName();
+    }
+  };
   return (
     <div className="chat-sigin">
       <h1>Введите Ваше имя</h1>
       <div className="chat-sigin__bottom">
-        <Input type="text" value={nameInput} onChange={(e) => setName(e)} />
+        <Input
+          type="text"
+          value={nameInput}
+          onChange={setName}
+          onKeyUp={handleSendMessage}
+        />
         <Button onClick={sendName}>Продолжить</Button>
       </div>
     </div>

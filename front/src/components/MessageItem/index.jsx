@@ -30,7 +30,7 @@ const MessageItem = ({ text, isMe, author, date }) => {
           "message-time--isme": isMe,
         })}
       >
-        <Time isMe={isMe} date={date} />
+        <Time isMe={isMe} date={String(date)} />
       </div>
     </div>
   );

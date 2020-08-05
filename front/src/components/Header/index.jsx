@@ -9,8 +9,8 @@ const Header = () => {
   return (
     <div className="header">
       {activeUsers && <h1>Активные пользователи:</h1>}
-      {activeUsers?.map((userObj) => (
-        <div className="header-users">{`${
+      {activeUsers?.map((userObj, index) => (
+        <div className="header-users" key={index}>{`${
           userObj.userName === userName
             ? `Вы: -------> ${userName}`
             : `${userObj.userName}`

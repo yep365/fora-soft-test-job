@@ -7,3 +7,6 @@ export { default as SignIn } from "./SignIn";
 export { default as Layout } from "./Layout";
 export { default as Time } from "./Time";
 export { default as NotificationMessage } from "./NotificationMessage";
+export { default as Footer } from "./Footer";
+export { default as CameraItem } from "./CameraItem";
+export { default as RecordAudio } from "./RecordAudio";
