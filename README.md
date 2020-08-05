@@ -1,6 +1,6 @@
 Для запуска выполните следующие команды:
 
-Для запуска бэкенда, необходимо создать MongoDB с именем fora-chat (mongo-->show dbs-->use fora-chat)
+Для запуска бэкенда, необходимо создать MongoDB с именем fora-chat (mongo-->show dbs-->use fora-chat), затем
 
 ## cd back
 
@@ -8,7 +8,7 @@
 
 ## yarn start
 
-Доя запуска фронтеда:
+Для запуска фронтеда:
 
 ## cd front
 
