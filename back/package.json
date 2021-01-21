@@ -13,7 +13,7 @@
     "lodash": "^4.17.19",
     "mongoose": "^5.9.27",
     "nodemon": "^2.0.4",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.0"
   },
   "scripts": {
     "start": "node --experimental-modules src/index.mjs",
